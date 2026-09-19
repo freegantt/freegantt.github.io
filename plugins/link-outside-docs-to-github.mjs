@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DOCS_DIR = path.join(REPO_ROOT, 'docs');
 const BLOB_BASE = 'https://github.com/freegantt/freegantt/blob/main/';
-const API_REFERENCE_ROUTE = '/api/';
+const EXPORT_LIST_URL = 'https://github.com/freegantt/freegantt/blob/main/etc/freegantt.api.md';
 
 function eachLink(node, visit) {
   if (node.type === 'link') visit(node);
@@ -42,7 +42,7 @@ export default function linkOutsideDocsToGitHub() {
 
       const resolved = path.resolve(sourceDir, filePart);
       if (isExportList(resolved)) {
-        link.url = `${API_REFERENCE_ROUTE}${anchor}`;
+        link.url = `${EXPORT_LIST_URL}${anchor}`;
         return;
       }
       if (siteServes(resolved)) return;
