@@ -1,0 +1,35 @@
+:root {
+  --ifm-color-primary: #1f4e79;
+  --ifm-color-primary-dark: #1b446a;
+  --ifm-color-primary-darker: #194064;
+  --ifm-color-primary-darkest: #153453;
+  --ifm-color-primary-light: #235888;
+  --ifm-color-primary-lighter: #255c8e;
+  --ifm-color-primary-lightest: #2c6ba3;
+  --ifm-code-font-size: 95%;
+  --ifm-font-family-base: 'Familjen Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --ifm-heading-font-family: 'Familjen Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --ifm-font-family-monospace: 'IBM Plex Mono', ui-monospace, monospace;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --fg-ink: #15202b;
+  --fg-paper: #f4f6f8;
+  --fg-rule: #9aa8b5;
+  --fg-bar: #1f4e79;
+  --fg-gold: #e3a72f;
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #7ea0c4;
+  --ifm-color-primary-dark: #678eb8;
+  --ifm-color-primary-darker: #5b85b2;
+  --ifm-color-primary-darkest: #456c96;
+  --ifm-color-primary-light: #95b2d0;
+  --ifm-color-primary-lighter: #a1bbd6;
+  --ifm-color-primary-lightest: #c4d4e5;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --fg-ink: #f4f6f8;
+  --fg-paper: #15202b;
+  --fg-rule: #4a5a68;
+  --fg-bar: #7ea0c4;
+  --fg-gold: #e3a72f;
+}
