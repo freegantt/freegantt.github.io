@@ -22,6 +22,9 @@ export default function Home(): JSX.Element {
             <Link className={styles.primary} to="/docs/consumer-api">
               Read the consumer API
             </Link>
+            <Link className={styles.secondary} to="pathname:///demo/">
+              Try the live demo
+            </Link>
             <Link className={styles.secondary} to="/docs/plugin-authoring">
               Write a plugin
             </Link>

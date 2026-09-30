@@ -145,6 +145,8 @@ const config: Config = {
           position: 'left',
           label: 'API reference',
         },
+        // A plain link: /demo/ is a separate Vite build, not a Docusaurus route.
+        { to: 'pathname:///demo/', label: 'Demo', position: 'left' },
         {
           href: 'https://github.com/freegantt/freegantt',
           label: 'GitHub',
@@ -160,6 +162,7 @@ const config: Config = {
           items: [
             { label: 'Guides', to: '/docs/guardrails-overview' },
             { label: 'ADRs', to: '/docs/adr/' },
+            { label: 'Live demo', to: 'pathname:///demo/' },
             { label: 'API reference', to: '/api/' },
           ],
         },
