@@ -72,77 +72,12 @@
   font-size: 0.95rem;
 }
 
-.chart {
+.demo {
+  display: block;
+  width: 100%;
+  height: auto;
   border-top: 1px solid var(--fg-rule);
   border-bottom: 1px solid var(--fg-rule);
-  padding: 1.25rem 0 0.4rem;
-}
-
-.scale {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  font-family: var(--ifm-font-family-monospace);
-  font-size: 0.75rem;
-  color: #5b6b78;
-  margin-bottom: 0.85rem;
-}
-
-.row {
-  display: grid;
-  grid-template-columns: 7rem 1fr;
-  gap: 1rem;
-  align-items: center;
-  margin-bottom: 0.65rem;
-}
-
-.rowName {
-  font-size: 0.95rem;
-}
-
-.track {
-  position: relative;
-  height: 1.35rem;
-  background-image: repeating-linear-gradient(
-    to right,
-    transparent 0,
-    transparent calc(16.666% - 1px),
-    var(--fg-rule) calc(16.666% - 1px),
-    var(--fg-rule) 16.666%
-  );
-}
-
-.bar {
-  position: absolute;
-  top: 0.15rem;
-  height: 1.05rem;
-  border-radius: 1px;
-}
-
-.design {
-  left: 0%;
-  width: 28%;
-  background: var(--fg-gold);
-}
-
-.build {
-  left: 28%;
-  width: 44%;
-  background: var(--fg-bar);
-}
-
-.qa {
-  left: 72%;
-  width: 22%;
-  background: #7ea0c4;
-}
-
-.today {
-  position: absolute;
-  top: -1.4rem;
-  bottom: -0.2rem;
-  left: 58%;
-  width: 2px;
-  background: #c45c26;
 }
 
 .points {

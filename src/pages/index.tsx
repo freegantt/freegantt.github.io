@@ -1,4 +1,5 @@
 import Link from '@docusaurus/Link';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import Layout from '@theme/Layout';
 
 import styles from './index.module.css';
@@ -26,35 +27,16 @@ export default function Home(): JSX.Element {
             </Link>
             <code className={styles.install}>npm install freegantt</code>
           </div>
-          <div className={styles.chart} aria-hidden="true">
-            <div className={styles.scale}>
-              <span>Sep 1</span>
-              <span>Sep 8</span>
-              <span>Sep 15</span>
-              <span>Sep 22</span>
-              <span>Sep 29</span>
-              <span>Oct 6</span>
-            </div>
-            <div className={styles.row}>
-              <span className={styles.rowName}>Design</span>
-              <div className={styles.track}>
-                <span className={`${styles.bar} ${styles.design}`} />
-                <span className={styles.today} />
-              </div>
-            </div>
-            <div className={styles.row}>
-              <span className={styles.rowName}>Build</span>
-              <div className={styles.track}>
-                <span className={`${styles.bar} ${styles.build}`} />
-              </div>
-            </div>
-            <div className={styles.row}>
-              <span className={styles.rowName}>QA</span>
-              <div className={styles.track}>
-                <span className={`${styles.bar} ${styles.qa}`} />
-              </div>
-            </div>
-          </div>
+          <video
+            className={styles.demo}
+            src={useBaseUrl('/img/video.mp4')}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            aria-label="FreeGantt demo: a Gantt chart being edited"
+          />
         </section>
         <section className={styles.points}>
           <div className={styles.point}>
