@@ -1,4 +1,3 @@
-import { existsSync } from 'node:fs';
 import path from 'node:path';
 
 import { themes as prismThemes } from 'prism-react-renderer';
@@ -6,6 +5,7 @@ import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 import linkOutsideDocsToGitHub from './plugins/link-outside-docs-to-github.mjs';
+import { libraryDocs, libraryRoot } from './plugins/library-src.mjs';
 
 /** True for an ADR. Thirteen of them open with a `status:`/`decided:`/`open:` block that a reader
  *  sees on the page. It is prose between two rules, it is not YAML, and it is not front matter. */
@@ -13,14 +13,6 @@ function isDecisionRecord(filePath: string): boolean {
   return filePath.split(path.sep).join('/').includes('/docs/adr/');
 }
 
-function resolveLibrarySrc(): string | undefined {
-  const named = [process.env.FREEGANTT_SRC, path.resolve(__dirname, 'vendor/freegantt')];
-  return named.find(
-    (candidate) => candidate && existsSync(path.join(candidate, 'src/api/index.ts')),
-  );
-}
-
-const librarySrc = resolveLibrarySrc();
 
 const config: Config = {
   title: 'FreeGantt',
@@ -31,11 +23,11 @@ const config: Config = {
     v4: true,
   },
 
-  url: 'https://freegantt.vercel.app',
+  url: 'https://freegantt.dev',
   baseUrl: '/',
 
   organizationName: 'freegantt',
-  projectName: 'docs',
+  projectName: 'freegantt.github.io',
 
   onBrokenLinks: 'throw',
 
@@ -56,11 +48,11 @@ const config: Config = {
       'classic',
       {
         docs: {
-          path: './docs',
+          path: libraryDocs,
           sidebarPath: './sidebars.ts',
           beforeDefaultRemarkPlugins: [linkOutsideDocsToGitHub],
           editUrl: ({ docPath }) =>
-            `https://github.com/freegantt/docs/blob/main/docs/${docPath}`,
+            `https://github.com/freegantt/freegantt/blob/main/docs/${docPath}`,
           routeBasePath: 'docs',
           showLastUpdateTime: true,
         },
@@ -79,14 +71,18 @@ const config: Config = {
     hooks: {
       onBrokenMarkdownLinks: 'throw',
     },
-    parseFrontMatter: async (params) =>
-      isDecisionRecord(params.filePath)
-        ? { frontMatter: {}, content: params.fileContent }
-        : params.defaultParseFrontMatter(params),
+    parseFrontMatter: async (params) => {
+      if (isDecisionRecord(params.filePath)) {
+        return { frontMatter: {}, content: params.fileContent };
+      }
+      const parsed = await params.defaultParseFrontMatter(params);
+      // The library's overview claims `slug: /`; the home page here is src/pages/index.tsx.
+      const { slug: _slug, ...frontMatter } = parsed.frontMatter;
+      return { ...parsed, frontMatter };
+    },
   },
 
-  plugins: librarySrc
-    ? [
+  plugins: [
         [
           '@docusaurus/plugin-content-docs',
           {
@@ -99,18 +95,18 @@ const config: Config = {
         [
           'docusaurus-plugin-typedoc',
           {
-            entryPoints: [path.join(librarySrc, 'src/api/index.ts')],
+            entryPoints: [path.join(libraryRoot, 'src/api/index.ts')],
             tsconfig: './tsconfig.typedoc.json',
             out: 'generated/api',
             sidebar: false,
             readme: 'none',
+            skipErrorChecking: true, // the library's own CI type-checks it
             excludeExternals: true,
             excludePrivate: true,
             excludeProtected: true,
           },
         ],
-      ]
-    : [],
+    ],
 
   themeConfig: {
     colorMode: {
@@ -142,17 +138,13 @@ const config: Config = {
           position: 'left',
           label: 'ADRs',
         },
-        ...(librarySrc
-          ? [
-              {
-                type: 'docSidebar' as const,
-                sidebarId: 'apiSidebar',
-                docsPluginId: 'api',
-                position: 'left' as const,
-                label: 'API reference',
-              },
-            ]
-          : []),
+        {
+          type: 'docSidebar',
+          sidebarId: 'apiSidebar',
+          docsPluginId: 'api',
+          position: 'left',
+          label: 'API reference',
+        },
         {
           href: 'https://github.com/freegantt/freegantt',
           label: 'GitHub',
@@ -168,7 +160,7 @@ const config: Config = {
           items: [
             { label: 'Guides', to: '/docs/guardrails-overview' },
             { label: 'ADRs', to: '/docs/adr/' },
-            ...(librarySrc ? [{ label: 'API reference', to: '/api/' }] : []),
+            { label: 'API reference', to: '/api/' },
           ],
         },
         {

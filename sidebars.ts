@@ -1,6 +1,6 @@
 import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
 
-// Ids come from the file names under `docs/`. Docusaurus strips the `00-` style number prefix, so
+// Ids come from the file names under the library's `docs/`. Docusaurus strips the `00-` style number prefix, so
 // `docs/00-guardrails-overview.md` is `guardrails-overview` here.
 const sidebars: SidebarsConfig = {
   guidesSidebar: [
@@ -18,6 +18,7 @@ const sidebars: SidebarsConfig = {
         'row-source-updates',
         'plugin-authoring',
         'a-bar-is-an-entry',
+        'integration-pitfalls',
         'edit-extension-flow',
       ],
     },

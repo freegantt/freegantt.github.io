@@ -1,0 +1,59 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  # The library repo fires this when its docs or public API change:
+  #   gh api repos/freegantt/freegantt.github.io/dispatches -f event_type=library-updated
+  repository_dispatch:
+    types: [library-updated]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # showLastUpdateTime reads git history
+
+      # The API reference is generated from the library source (see resolveLibrarySrc).
+      - uses: actions/checkout@v4
+        with:
+          repository: freegantt/freegantt
+          ref: main
+          path: vendor/freegantt
+
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+      # Typedoc resolves the library's own imports (temporal-polyfill, ...).
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+        working-directory: vendor/freegantt
+      - run: pnpm build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

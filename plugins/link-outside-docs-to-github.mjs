@@ -3,10 +3,11 @@
 // library repository. This re-aims those links at the file on GitHub.
 
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 
-const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const DOCS_DIR = path.join(REPO_ROOT, 'docs');
+import { libraryDocs, libraryRoot } from './library-src.mjs';
+
+const REPO_ROOT = libraryRoot;
+const DOCS_DIR = libraryDocs;
 const BLOB_BASE = 'https://github.com/freegantt/freegantt/blob/main/';
 const EXPORT_LIST_URL = 'https://github.com/freegantt/freegantt/blob/main/etc/freegantt.api.md';
 

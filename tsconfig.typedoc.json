@@ -6,7 +6,9 @@
     "strict": true,
     "skipLibCheck": true,
     "noEmit": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "paths": { "freegantt": ["vendor/freegantt/src/api/index.ts"] }
   },
-  "include": ["../freegantt/src/**/*.ts", "vendor/freegantt/src/**/*.ts"]
+  "include": ["vendor/freegantt/src/**/*.ts"],
+  "exclude": ["**/*.test.ts", "**/*.spec.ts"]
 }
