@@ -146,7 +146,18 @@ const config: Config = {
           label: 'API reference',
         },
         // A plain link: /demo/ is a separate Vite build, not a Docusaurus route.
-        { to: 'pathname:///demo/', label: 'Demo', position: 'left' },
+        {
+          label: 'Demo',
+          position: 'left',
+          items: [
+            { to: 'pathname:///demo/', label: 'Planner' },
+            { to: 'pathname:///demo/?theme=light', label: 'Planner — Light' },
+            { to: 'pathname:///demo/?theme=dark', label: 'Planner — Dark' },
+            { to: 'pathname:///demo/?theme=paper', label: 'Planner — Paper' },
+            { to: 'pathname:///demo/generic.html', label: 'Generic demo' },
+            { to: 'pathname:///demo/performance.html', label: 'Performance' },
+          ],
+        },
         {
           href: 'https://github.com/freegantt/freegantt',
           label: 'GitHub',
