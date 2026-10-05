@@ -9,12 +9,12 @@
   --fg-line2: rgba(25, 24, 20, 0.06);
   --fg-bar: #cbc7bc;
   --fg-code: #efede7;
-  --fg-accent: #e2711d;
-  --fg-accent-ink: #1c1206;
-  --fg-accent-text: #a24c0c;
+  --fg-accent: #8b5cf6;
+  --fg-accent-ink: #ffffff;
+  --fg-accent-text: #6d3fd9;
   --fg-accent-soft: color-mix(in oklch, var(--fg-accent) 14%, transparent);
 
-  --ifm-color-primary: #a24c0c;
+  --ifm-color-primary: #6d3fd9;
   --ifm-color-primary-dark: #92450b;
   --ifm-color-primary-darker: #8a420a;
   --ifm-color-primary-darkest: #713608;
