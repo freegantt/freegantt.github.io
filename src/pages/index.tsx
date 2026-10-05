@@ -117,7 +117,6 @@ const STATS = [
   ['50,000', 'entries in a single chart in the performance demo'],
   ['100', 'bundle size before gzip', 'kB'],
   ['0', 'framework dependencies. Plugins you skip are never bundled.'],
-  ['3', 'browser engines tested in CI: Chromium, Firefox and WebKit'],
 ];
 
 const FEATURES = [
@@ -182,6 +181,7 @@ export default function Home(): ReactElement {
             <span className={styles.badge}>Open source</span>
             <span className={styles.badge}>MIT</span>
             <span className={styles.badge}>TypeScript</span>
+            <span className={styles.badge}>100 kB before gzip</span>
           </div>
           <h1 className={styles.title}>An MIT-licensed Gantt chart for every stack.</h1>
           <div className={styles.heroRow}>
