@@ -1,35 +1,142 @@
+/* Design tokens shared by the home page and the Docusaurus chrome. The warm
+ * paper palette and orange accent come from the Freegantt redesign. */
 :root {
-  --ifm-color-primary: #1f4e79;
-  --ifm-color-primary-dark: #1b446a;
-  --ifm-color-primary-darker: #194064;
-  --ifm-color-primary-darkest: #153453;
-  --ifm-color-primary-light: #235888;
-  --ifm-color-primary-lighter: #255c8e;
-  --ifm-color-primary-lightest: #2c6ba3;
-  --ifm-code-font-size: 95%;
-  --ifm-font-family-base: 'Familjen Grotesk', ui-sans-serif, system-ui, sans-serif;
-  --ifm-heading-font-family: 'Familjen Grotesk', ui-sans-serif, system-ui, sans-serif;
-  --ifm-font-family-monospace: 'IBM Plex Mono', ui-monospace, monospace;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-  --fg-ink: #15202b;
-  --fg-paper: #f4f6f8;
-  --fg-rule: #9aa8b5;
-  --fg-bar: #1f4e79;
-  --fg-gold: #e3a72f;
+  --fg-bg: #f6f5f1;
+  --fg-panel: #fdfcfa;
+  --fg-ink: #191814;
+  --fg-muted: #66635b;
+  --fg-line: rgba(25, 24, 20, 0.12);
+  --fg-line2: rgba(25, 24, 20, 0.06);
+  --fg-bar: #cbc7bc;
+  --fg-code: #efede7;
+  --fg-accent: #e2711d;
+  --fg-accent-ink: #1c1206;
+  --fg-accent-text: #a24c0c;
+  --fg-accent-soft: color-mix(in oklch, var(--fg-accent) 14%, transparent);
+
+  --ifm-color-primary: #a24c0c;
+  --ifm-color-primary-dark: #92450b;
+  --ifm-color-primary-darker: #8a420a;
+  --ifm-color-primary-darkest: #713608;
+  --ifm-color-primary-light: #b2540d;
+  --ifm-color-primary-lighter: #ba580e;
+  --ifm-color-primary-lightest: #d96510;
+  --ifm-font-family-base: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --ifm-heading-font-family: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --ifm-font-family-monospace: 'Geist Mono', ui-monospace, monospace;
+  --ifm-code-font-size: 92%;
+  --ifm-background-color: var(--fg-bg);
+  --ifm-background-surface-color: var(--fg-panel);
+  --ifm-font-color-base: var(--fg-ink);
+  --ifm-navbar-background-color: color-mix(in oklch, var(--fg-bg) 88%, transparent);
+  --ifm-navbar-height: 60px;
+  --ifm-toc-border-color: var(--fg-line);
+  --ifm-color-emphasis-300: var(--fg-line);
+  --ifm-global-radius: 8px;
+  --docusaurus-highlighted-code-line-bg: rgba(25, 24, 20, 0.08);
 }
 
 [data-theme='dark'] {
-  --ifm-color-primary: #7ea0c4;
-  --ifm-color-primary-dark: #678eb8;
-  --ifm-color-primary-darker: #5b85b2;
-  --ifm-color-primary-darkest: #456c96;
-  --ifm-color-primary-light: #95b2d0;
-  --ifm-color-primary-lighter: #a1bbd6;
-  --ifm-color-primary-lightest: #c4d4e5;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
-  --fg-ink: #f4f6f8;
-  --fg-paper: #15202b;
-  --fg-rule: #4a5a68;
-  --fg-bar: #7ea0c4;
-  --fg-gold: #e3a72f;
+  --fg-bg: #11110f;
+  --fg-panel: #181816;
+  --fg-ink: #edebe5;
+  --fg-muted: #9d9a91;
+  --fg-line: rgba(237, 235, 229, 0.11);
+  --fg-line2: rgba(237, 235, 229, 0.06);
+  --fg-bar: #46443e;
+  --fg-code: #0c0c0b;
+  --fg-accent-text: color-mix(in oklch, var(--fg-accent) 80%, white);
+
+  --ifm-color-primary: #e8894a;
+  --ifm-color-primary-dark: #e47a34;
+  --ifm-color-primary-darker: #e27329;
+  --ifm-color-primary-darkest: #c85c14;
+  --ifm-color-primary-light: #ec985f;
+  --ifm-color-primary-lighter: #eea06b;
+  --ifm-color-primary-lightest: #f3b78d;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.35);
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--fg-accent);
+  color: var(--fg-accent-ink);
+}
+
+/* Navbar: translucent bar with a hairline, like the landing header. */
+.navbar {
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--fg-line);
+  box-shadow: none;
+}
+
+.navbar__title {
+  font-family: var(--ifm-font-family-monospace);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+}
+
+.navbar__link {
+  font-size: 14px;
+  color: var(--fg-muted);
+}
+
+.navbar__link:hover,
+.navbar__link--active {
+  color: var(--fg-accent-text);
+}
+
+/* The GitHub link becomes the solid pill from the design. */
+.navbar__item.navbar__link[href*='github.com'] {
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 14px;
+  border-radius: 8px;
+  background: var(--fg-ink);
+  color: var(--fg-bg);
+  font-weight: 500;
+}
+
+.navbar__item.navbar__link[href*='github.com']:hover {
+  opacity: 0.85;
+  color: var(--fg-bg);
+}
+
+.navbar__item.navbar__link[href*='github.com']::after {
+  display: none;
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+
+.menu__link--active:not(.menu__link--sublist) {
+  background: var(--fg-accent-soft);
+}
+
+pre,
+.theme-code-block {
+  border-radius: 10px;
+}
+
+.footer {
+  background: var(--fg-bg);
+  color: var(--fg-muted);
+  border-top: 1px solid var(--fg-line);
+  --ifm-footer-title-color: var(--fg-ink);
+  --ifm-footer-link-color: var(--fg-muted);
+  --ifm-footer-color: var(--fg-muted);
+  --ifm-footer-background-color: var(--fg-bg);
+}
+
+.footer__link-item:hover {
+  color: var(--fg-accent-text);
 }
