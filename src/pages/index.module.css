@@ -393,6 +393,16 @@
   line-height: 1;
 }
 
+/* The unit sits beside the number in the mono face so "100 kB" stays inside its column. */
+.statUnit {
+  margin-left: 0.2em;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.3em;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--fg-muted);
+}
+
 .statText {
   margin-top: 12px;
   color: var(--fg-muted);

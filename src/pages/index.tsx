@@ -115,6 +115,7 @@ const PLUGINS = [
 
 const STATS = [
   ['50,000', 'entries in a single chart in the performance demo'],
+  ['100', 'bundle size before gzip', 'kB'],
   ['0', 'framework dependencies. Plugins you skip are never bundled.'],
   ['3', 'browser engines tested in CI: Chromium, Firefox and WebKit'],
 ];
@@ -318,9 +319,12 @@ export default function Home(): ReactElement {
               </Link>
             </div>
             <div className={styles.stats}>
-              {STATS.map(([value, text]) => (
+              {STATS.map(([value, text, unit]) => (
                 <div key={value} className={styles.stat}>
-                  <div className={styles.statNo}>{value}</div>
+                  <div className={styles.statNo}>
+                    {value}
+                    {unit ? <span className={styles.statUnit}>{unit}</span> : null}
+                  </div>
                   <div className={styles.statText}>{text}</div>
                 </div>
               ))}
