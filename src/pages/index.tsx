@@ -200,6 +200,10 @@ export default function Home(): ReactElement {
           <div className={styles.demoFrame}>
             <HeroGantt narrow={narrow} />
           </div>
+          <p className={styles.demoNote}>
+            Auto-scheduling, which moves dependent tasks as shown above, is a planned plugin and is not
+            released yet.
+          </p>
           <div className={styles.stacks}>
             <span>Mounts into any element from</span>
             {STACKS.map((name) => (

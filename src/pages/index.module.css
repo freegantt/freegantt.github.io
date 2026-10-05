@@ -186,6 +186,13 @@
   box-shadow: 0 30px 60px -40px rgba(0, 0, 0, 0.35);
 }
 
+.demoNote {
+  margin: 14px 0 0;
+  font-size: 13px;
+  color: var(--fg-muted);
+  opacity: 0.8;
+}
+
 .stacks {
   display: flex;
   flex-wrap: wrap;
